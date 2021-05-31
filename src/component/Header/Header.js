@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useStateValue } from "../../Context/StateProvider";
 //css
 import Styles from "./header.module.css";
 
@@ -9,6 +9,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 function Header(props) {
+  const [{ basket }, dispatch] = useStateValue();
+  console.log("mybasket", basket);
   return (
     <nav className={Styles.header}>
       <img
@@ -50,7 +52,7 @@ function Header(props) {
             <span
               className={(Styles.header__optionTwo, Styles.header__basketCount)}
             >
-              2
+              {basket.length == 0 ? 0 : basket.length}
             </span>
           </div>
         </Link>
